@@ -1,0 +1,11 @@
+**[~\#]
+**.py[cod]
+
+.cache
+.coverage
+*.eggs
+*.egg-info
+
+doc/build
+
+requirements.in
