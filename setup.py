@@ -2,6 +2,16 @@ from pathlib import Path
 from setuptools import setup
 from setuptools import find_packages
 
+from pip.req import parse_requirements
+from pip.download import PipSession
+
+
+def requirements(filename):
+    """Parse requirements from requirements.txt."""
+    path = str(Path(filename))
+    reqs = parse_requirements(path, session=PipSession())
+    return [str(req.req) for req in reqs]
+
 
 setup(
     name='tailor',
@@ -26,6 +36,7 @@ setup(
     packages=find_packages('src'),
 
     setup_requires=['pytest-runner'],
+    test_require=requirements('requirements-dev.txt'),
     # install_requires=Path('requirements.in').read_text().split('\n'),
 
     include_package_data=True,
